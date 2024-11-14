@@ -1,27 +1,27 @@
 package com.bp2parkeerplaatsenehv.Menubar;
 
-import com.bp2parkeerplaatsenehv.Pages.InzageReserveringen;
+import com.bp2parkeerplaatsenehv.Pages.BeheerPersoongegevens;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.layout.Pane;
 
-public class ClickAbleMenuReserveren extends Menu {
+public class ClickAbleMenuBeheerPersoonsgegevens extends Menu {
     private Label label = new Label();
-    private Pane reserveren;
+    private Pane persoongegevens;
 
-    public ClickAbleMenuReserveren(String text) {
+    public ClickAbleMenuBeheerPersoonsgegevens(String text) {
         MenuItem dummy = new MenuItem();
         label.setText(text);
         label.setOnMouseClicked(event -> {
             // clear the screen
-            reserveren.getChildren().clear();
-            // opens the reserveren page.
-            new InzageReserveringen(reserveren);
+            persoongegevens.getChildren().clear();
+            // opens the persoongegevens page.
+            new BeheerPersoongegevens(persoongegevens);
         });
         setGraphic(label);
     }
     public void setPane(Pane p) {
-        this.reserveren = p;
+        this.persoongegevens = p;
     }
 }
