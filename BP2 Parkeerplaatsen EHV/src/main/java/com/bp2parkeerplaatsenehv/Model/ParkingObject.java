@@ -3,51 +3,54 @@ package com.bp2parkeerplaatsenehv.Model;
 import com.google.gson.annotations.SerializedName;
 
 public class ParkingObject {
-    @SerializedName("objectid")
-    public String ObjectId;
-
-    @SerializedName("straat")
-    public String Straat;
-
-    @SerializedName("type_en_merk")
-    public String TypeEnMerk;
-
-    @SerializedName("geo_point_2d")
-    public GeoPoint2d GeoPoint;
-
     public ParkingObject() {}
 
+    // @SerializedName annotation is used to map the JSON keys to the Java fields
+    @SerializedName("objectid")
+    public Integer objectId;
+
+    @SerializedName("straat")
+    public String straat;
+
+    @SerializedName("type_en_merk")
+    public String typeEnMerk;
+
+    @SerializedName("geo_point_2d")
+    public GeoPoint2d geoPoint;
+
+
+
     // Getter methods
-    public String getObjectId() {
-        return ObjectId;
+    public Integer getObjectId() {
+        return objectId;
     }
 
     public String getStraat() {
-        return Straat;
+        return straat;
     }
 
     public String getTypeEnMerk() {
-        return TypeEnMerk;
+        return typeEnMerk;
     }
 
     public GeoPoint2d getGeoPoint() {
-        return GeoPoint;
+        return geoPoint;
     }
 
     // Setter methods
-    public void setObjectId(String objectId) {
-        this.ObjectId = objectId;
+    public void setObjectId(Integer objectId) {
+        this.objectId = objectId;
     }
 
     public void setStraat(String straat) {
-        this.Straat = straat;
+        this.straat = straat;
     }
 
     public void setTypeEnMerk(String typeEnMerk) {
-        this.TypeEnMerk = typeEnMerk;
+        this.typeEnMerk = typeEnMerk;
     }
 
     public void setGeoPoint(GeoPoint2d geoPoint) {
-        this.GeoPoint = geoPoint;
+        this.geoPoint = geoPoint;
     }
 }

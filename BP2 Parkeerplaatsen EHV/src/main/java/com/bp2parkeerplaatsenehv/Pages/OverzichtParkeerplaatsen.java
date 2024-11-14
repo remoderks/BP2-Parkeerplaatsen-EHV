@@ -1,29 +1,68 @@
 package com.bp2parkeerplaatsenehv.Pages;
-
+import com.bp2parkeerplaatsenehv.Builders.JsonBuilder;
+import com.bp2parkeerplaatsenehv.Builders.MapHandler;
+import com.bp2parkeerplaatsenehv.Builders.ParkingObjectFilter;
+import com.bp2parkeerplaatsenehv.Builders.UIFormBuilder;
 import com.bp2parkeerplaatsenehv.Model.ParkingData;
+import com.bp2parkeerplaatsenehv.Model.ParkingObject;
 import com.bp2parkeerplaatsenehv.controllers.Data.DataReader;
 import javafx.scene.layout.Pane;
-import javafx.scene.web.WebEngine;
-import javafx.scene.web.WebView;
+import javafx.scene.layout.VBox;
+import javafx.scene.control.Label;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
+import java.util.List;
 
 public class OverzichtParkeerplaatsen {
+    private final List<ParkingObject> parkingObjects;
+    private final MapHandler mapHandler;
+    private final UIFormBuilder formBuilder;
+    private final ParkingObjectFilter parkingObjectFilter;
+    private final JsonBuilder jsonBuilder;
 
     public OverzichtParkeerplaatsen(Pane overzicht) {
-        WebView webView = new WebView();
-        WebEngine webEngine = webView.getEngine();
-
-        // Load the map.html file from the resources directory
-        webEngine.load(getClass().getResource("/com/bp2parkeerplaatsenehv/map.html").toExternalForm());
-
-        // Fetch the JSON data using DataReader
         ParkingData data = new DataReader().readData();
-        System.out.println(data.getParkingObjects().get(0).ObjectId);
+        parkingObjects = data.getParkingObjects();
 
-//        // Pass the JSON data to the WebView
-//        webEngine.setOnAlert(event -> {
-//            webEngine.executeScript("processJsonData(" + jsonData + ")");
-//        });
+        mapHandler = new MapHandler();
+        formBuilder = new UIFormBuilder(parkingObjects);
+        parkingObjectFilter = new ParkingObjectFilter(parkingObjects);
+        jsonBuilder = new JsonBuilder();
 
-        overzicht.getChildren().add(webView);
+        VBox layout = new VBox(10, formBuilder.buildForm(), mapHandler.getWebView());
+        overzicht.getChildren().add(layout);
+
+        initializeEvents();
+    }
+
+    private void initializeEvents() {
+        formBuilder.getSearchButton().setOnAction(event -> {
+            mapHandler.clearMarkers();
+            // get values from the form
+            Integer objectId = formBuilder.getObjectIdComboBox().getValue();
+            String straat = formBuilder.getStraatComboBox().getValue();
+            String typeEnMerk = formBuilder.getTypeEnMerkComboBox().getValue();
+
+            // Filter parking objects based on the selected values in the form/application
+            List<ParkingObject> filteredParkingObjects = parkingObjectFilter.filter(objectId, straat, typeEnMerk);
+            if (filteredParkingObjects.isEmpty()) {
+                ShowError("Parkeerplaatsen niet gevonden", "Er zijn geen parkeerplaatsen gevonden met de opgegeven criteria.");
+            } else {
+                parkingObjectFilter.filter(objectId, straat, typeEnMerk)
+                        .forEach(po -> mapHandler.addPin(po.getGeoPoint().getLongitude(), po.getGeoPoint().getLatitude(), po.getStraat()));
+            }});
+        formBuilder.getDeleteButton().setOnAction(event -> {
+            mapHandler.clearMarkers();
+            formBuilder.getObjectIdComboBox().setValue(null);
+            formBuilder.getStraatComboBox().setValue(null);
+            formBuilder.getTypeEnMerkComboBox().setValue(null);
+        });
+    }
+    private void ShowError(String title, String message) {
+        Alert alert = new Alert(AlertType.ERROR);
+        alert.setTitle("Fout");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }

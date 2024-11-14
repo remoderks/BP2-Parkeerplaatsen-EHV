@@ -32,6 +32,8 @@ public class DataReader {
             System.out.println(e.getMessage());
         }
 
+        System.out.println("Raw JSON Response: " + stringBuilder.toString()); // debugging statement
+
         Gson gson = new Gson();
         return gson.fromJson(stringBuilder.toString(), ParkingData.class);
     }

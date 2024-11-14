@@ -6,28 +6,28 @@ import java.util.List;
 
 public class GeoPoint2d {
     @SerializedName("lon")
-    public double Longitude;
+    public double longitude;
 
     @SerializedName("lat")
-    public double Latitude;
+    public double latitude;
 
     public GeoPoint2d() {}
 
     // Getter methods
     public double getLongitude() {
-        return Longitude;
+        return longitude;
     }
 
     public double getLatitude() {
-        return Latitude;
+        return latitude;
     }
 
     // Setter methods
     public void setLongitude(double longitude) {
-        this.Longitude = longitude;
+        this.longitude = longitude;
     }
 
     public void setLatitude(double latitude) {
-        this.Latitude = latitude;
+        this.latitude = latitude;
     }
 }

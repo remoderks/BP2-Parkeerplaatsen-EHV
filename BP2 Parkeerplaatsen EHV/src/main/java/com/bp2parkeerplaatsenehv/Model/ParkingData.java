@@ -5,18 +5,16 @@ import com.google.gson.annotations.SerializedName;
 
 public class ParkingData {
     @SerializedName("results")
-    public List<ParkingObject> ParkingObjects;
-
-    public ParkingData() {}
+    public List<ParkingObject> parkingObjects;
 
     // Getter methods
     public List<ParkingObject> getParkingObjects() {
-        return ParkingObjects;
+        return parkingObjects;
     }
 
     // Setter methods
     public void setParkingObjects(List<ParkingObject> parkingObjects) {
-        this.ParkingObjects = parkingObjects;
+        this.parkingObjects = parkingObjects;
     }
 }
 
