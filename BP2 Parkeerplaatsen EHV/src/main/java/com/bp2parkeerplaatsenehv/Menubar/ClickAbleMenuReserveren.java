@@ -1,6 +1,6 @@
 package com.bp2parkeerplaatsenehv.Menubar;
 
-import com.bp2parkeerplaatsenehv.Pages.InzageReserveringen;
+import com.bp2parkeerplaatsenehv.Pages.Reserveringsafspraken;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -17,7 +17,7 @@ public class ClickAbleMenuReserveren extends Menu {
             // clear the screen
             reserveren.getChildren().clear();
             // opens the reserveren page.
-            new InzageReserveringen(reserveren);
+            new Reserveringsafspraken(reserveren);
         });
         setGraphic(label);
     }
