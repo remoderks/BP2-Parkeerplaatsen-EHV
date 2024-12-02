@@ -3,7 +3,11 @@ package com.bp2parkeerplaatsenehv.Model;
 import com.google.gson.annotations.SerializedName;
 
 public class ParkingObject {
-    public ParkingObject() {}
+    public ParkingObject(int objectid, String straat, String type_en_merk) {
+        this.objectId = objectid;
+        this.straat = straat;
+        this.typeEnMerk = type_en_merk;
+    }
 
     // @SerializedName annotation is used to map the JSON keys to the Java fields
     @SerializedName("objectid")

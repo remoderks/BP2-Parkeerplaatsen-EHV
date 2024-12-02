@@ -3,7 +3,7 @@ import com.bp2parkeerplaatsenehv.Model.ParkingData;
 import com.google.gson.Gson;
 
 public class JsonBuilder {
-    private final Gson gson;
+    public final Gson gson;
 
     public JsonBuilder() {
         this.gson = new Gson();

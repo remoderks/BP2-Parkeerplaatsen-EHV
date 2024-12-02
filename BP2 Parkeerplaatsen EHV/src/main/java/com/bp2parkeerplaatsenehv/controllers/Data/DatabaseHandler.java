@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 
 public class DatabaseHandler {
-    private static final String DB_URL = "jdbc:mysql://localhost:3306/Beroepsproduct2";
+    private static final String DB_URL = "jdbc:mysql://localhost:3306/ReserveringsappEHV";
     private static final String USER = "ReserveringsappEHV";
     private static final String PASS = "Avans123";
 

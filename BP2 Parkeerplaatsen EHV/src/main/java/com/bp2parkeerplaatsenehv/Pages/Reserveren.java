@@ -71,7 +71,7 @@ public class Reserveren {
 
     private void populateComboBox(ComboBox<String> comboBox, String query) {
         List<String> items = new ArrayList<>();
-        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/yourdatabase", "username", "password");
+        try (Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/ReserveringsappEHV", "ReserveringsappEHV", "Avans123");
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {

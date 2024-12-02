@@ -1,14 +1,11 @@
 -- Create the schema
 CREATE SCHEMA if not exists ReserveringsappEHV;
-
 -- Use the schema
 USE ReserveringsappEHV;
-
 -- Create the personen table
 CREATE TABLE klanten (
     klant VARCHAR(50) PRIMARY KEY
 );
-
 -- Create the kentekens table
 CREATE TABLE kentekens (
     kenteken VARCHAR(20) PRIMARY KEY
@@ -31,7 +28,7 @@ CREATE TABLE klantenhebbenkentekens (
     klant VARCHAR(50),
     kenteken VARCHAR(20),
     CONSTRAINT persoon_kentekens_pk PRIMARY KEY (klant, kenteken),
-    CONSTRAINT persoon_personen_fk FOREIGN KEY (klant) REFERENCES personen(klant),
+    CONSTRAINT persoon_personen_fk FOREIGN KEY (klant) REFERENCES klanten(klant),
     CONSTRAINT kenteken_kentekens_fk FOREIGN KEY (kenteken) REFERENCES kentekens(kenteken)
 );
 
