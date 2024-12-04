@@ -2,13 +2,17 @@ package com.bp2parkeerplaatsenehv.Pages;
 
 import com.bp2parkeerplaatsenehv.Builders.JsonBuilder;
 import com.bp2parkeerplaatsenehv.Builders.ParkingObjectFilter;
+import com.bp2parkeerplaatsenehv.Builders.MapHandler;
 import com.bp2parkeerplaatsenehv.Model.ParkingData;
 import com.bp2parkeerplaatsenehv.Model.ParkingObject;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.geometry.Insets;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.Pane;
 
 import java.io.InputStreamReader;
@@ -19,8 +23,12 @@ import java.util.List;
 public class ParkeerplaatsenLijst {
     private TableView<ParkingObject> parkeerplaatsenLijst = new TableView<>();
     private ObservableList<ParkingObject> parkeerplaatsen = FXCollections.observableArrayList();
+    private MapHandler mapHandler;
 
     public ParkeerplaatsenLijst(Pane parkeerplaatsenPane) {
+        // Initialize MapHandler
+        mapHandler = new MapHandler();
+
         // Load the parkeerplaatsen
         loadParkeerplaatsen();
         // Set the data in the TableView
@@ -29,18 +37,51 @@ public class ParkeerplaatsenLijst {
         // Create the columns for the TableView
         TableColumn<ParkingObject, Integer> idColumn = new TableColumn<>("Parkeervak ID");
         idColumn.setCellValueFactory(new PropertyValueFactory<>("objectId"));
+        idColumn.setPrefWidth(70);
 
         TableColumn<ParkingObject, String> straatColumn = new TableColumn<>("Straatnaam");
         straatColumn.setCellValueFactory(new PropertyValueFactory<>("straat"));
+        straatColumn.setSortType(TableColumn.SortType.ASCENDING);
+        straatColumn.setPrefWidth(150);
 
         TableColumn<ParkingObject, String> typEnMerkColumn = new TableColumn<>("Type en Merk");
         typEnMerkColumn.setCellValueFactory(new PropertyValueFactory<>("typeEnMerk"));
+        typEnMerkColumn.setPrefWidth(150);
 
-        parkeerplaatsenLijst.getColumns().addAll(idColumn, straatColumn, typEnMerkColumn);
-        parkeerplaatsenPane.getChildren().add(parkeerplaatsenLijst);
+        TableColumn<ParkingObject, Double> longitudeColumn = new TableColumn<>("Longitude");
+        longitudeColumn.setCellValueFactory(cellData -> {
+            ParkingObject parkingObject = cellData.getValue();
+            return new SimpleObjectProperty<>(parkingObject.getGeoPoint().getLongitude());
+        });
+        longitudeColumn.setPrefWidth(100);
 
-        parkeerplaatsenLijst.setPrefWidth(750);
+        TableColumn<ParkingObject, Double> latitudeColumn = new TableColumn<>("Latitude");
+        latitudeColumn.setCellValueFactory(cellData -> {
+            ParkingObject parkingObject = cellData.getValue();
+            return new SimpleObjectProperty<>(parkingObject.getGeoPoint().getLatitude());
+        });
+        latitudeColumn.setPrefWidth(100);
+
+        parkeerplaatsenLijst.getColumns().addAll(straatColumn, idColumn, typEnMerkColumn, longitudeColumn, latitudeColumn);
+        parkeerplaatsenLijst.getSortOrder().add(straatColumn);
+        // Disable the addition of an extra column
+        parkeerplaatsenLijst.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
+
+        // Add TableView and Map to the layout
+        HBox layout = new HBox(100, parkeerplaatsenLijst, mapHandler.getWebView());
+        layout.setPadding(new Insets(10, 10, 10, 10));
+        parkeerplaatsenPane.getChildren().add(layout);
+
+        parkeerplaatsenLijst.setPrefWidth(500);
         parkeerplaatsenLijst.setPrefHeight(500);
+
+        // Add listener for row selection
+        parkeerplaatsenLijst.getSelectionModel().selectedItemProperty().addListener((observable, oldValue, newValue) -> {
+            if (newValue != null) {
+                mapHandler.clearMarkers();
+                mapHandler.addPin(newValue.getGeoPoint().getLongitude(), newValue.getGeoPoint().getLatitude(), newValue.getStraat());
+            }
+        });
     }
 
     private void loadParkeerplaatsen() {
@@ -59,7 +100,7 @@ public class ParkeerplaatsenLijst {
                 JsonBuilder jsonBuilder = new JsonBuilder();
                 ParkingData parkingData = jsonBuilder.gson.fromJson(reader, ParkingData.class);
                 List<ParkingObject> parkingObjects = parkingData.getParkingObjects();
-                System.out.println("Number of parking objects: " + parkingObjects.size());
+                System.out.println("Number of parking objects: " + parkingObjects.size()); // Used to debug and check if any data is returned from the API.
 
                 // Filter if needed, using ParkingObjectFilter (optional)
                 ParkingObjectFilter filter = new ParkingObjectFilter(parkingObjects);

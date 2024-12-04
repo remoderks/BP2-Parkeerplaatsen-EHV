@@ -14,49 +14,44 @@ public class Inschrijfpagina {
         grid.setHgap(10);
 
         Label infoLabel = new Label("Vul hieronder uw gegevens in om zich aan te melden in het systeem!");
-        GridPane.setConstraints(infoLabel, 0, 0);
+        GridPane.setConstraints(infoLabel, 0, 0, 2, 1); // Span across two columns
+
         // Standard text fields
         TextField naamField = new TextField();
         naamField.setPromptText("Naam");
-        GridPane.setConstraints(naamField, 0, 1);
+        GridPane.setConstraints(naamField, 0, 1, 2, 1); // Span across two columns
 
         TextField kentekenField = new TextField();
         kentekenField.setPromptText("Kenteken");
-        GridPane.setConstraints(kentekenField, 0, 2);
-
-        // Checkboxes for private and company
-        CheckBox privateCheckBox = new CheckBox("Customer");
-        GridPane.setConstraints(privateCheckBox, 0, 6);
-
-        CheckBox companyCheckBox = new CheckBox("Company");
-        GridPane.setConstraints(companyCheckBox, 1, 6);
+        GridPane.setConstraints(kentekenField, 0, 2, 2, 1); // Span across two columns
 
         // Additional fields for private
         TextField emailField = new TextField();
         emailField.setPromptText("Email");
-        GridPane.setConstraints(emailField, 0, 3);
+        GridPane.setConstraints(emailField, 0, 4, 2, 1); // Span across two columns
         emailField.setVisible(false);
-
-        // Additional fields for company
-        TextField bedrijfsnaamField = new TextField();
-        bedrijfsnaamField.setPromptText("Bedrijfsnaam");
-        GridPane.setConstraints(bedrijfsnaamField, 0, 4);
-        bedrijfsnaamField.setVisible(false);
 
         TextField kvkNummerField = new TextField();
         kvkNummerField.setPromptText("KVK Nummer");
-        GridPane.setConstraints(kvkNummerField, 0, 5);
+        GridPane.setConstraints(kvkNummerField, 0, 5, 2, 1); // Span across two columns
         kvkNummerField.setVisible(false);
 
-        Button submitButton = new Button("Submit");
-        GridPane.setConstraints(submitButton, 0, 7);
+        // Checkboxes for private and company
+        CheckBox privateCheckBox = new CheckBox("Particulier");
+        GridPane.setConstraints(privateCheckBox, 0, 3);
+
+        CheckBox companyCheckBox = new CheckBox("Zakelijk");
+        GridPane.setConstraints(companyCheckBox, 1, 3);
+
+        // Submit button
+        Button submitButton = new Button("Aanmelden");
+        GridPane.setConstraints(submitButton, 0, 6, 2, 1); // Span across two columns
 
         // Event handlers for checkboxes
         privateCheckBox.setOnAction(e -> {
             if (privateCheckBox.isSelected()) {
                 companyCheckBox.setSelected(false);
                 emailField.setVisible(true);
-                bedrijfsnaamField.setVisible(false);
                 kvkNummerField.setVisible(false);
             } else {
                 emailField.setVisible(false);
@@ -67,10 +62,8 @@ public class Inschrijfpagina {
             if (companyCheckBox.isSelected()) {
                 privateCheckBox.setSelected(false);
                 emailField.setVisible(false);
-                bedrijfsnaamField.setVisible(true);
                 kvkNummerField.setVisible(true);
             } else {
-                bedrijfsnaamField.setVisible(false);
                 kvkNummerField.setVisible(false);
             }
         });
@@ -79,12 +72,12 @@ public class Inschrijfpagina {
             naamField.clear();
             kentekenField.clear();
             emailField.clear();
-            bedrijfsnaamField.clear();
             kvkNummerField.clear();
+            // implement the logic to save the data -> class databasehandler
         });
 
         // Add all elements to the grid
-        grid.getChildren().addAll(infoLabel, naamField, kentekenField, privateCheckBox, companyCheckBox, emailField, bedrijfsnaamField, kvkNummerField, submitButton);
+        grid.getChildren().addAll(infoLabel, naamField, kentekenField, privateCheckBox, companyCheckBox, emailField, kvkNummerField, submitButton);
 
         // Add the grid to the provided Pane
         p.getChildren().add(grid);
