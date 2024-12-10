@@ -1,10 +1,10 @@
 package com.bp2parkeerplaatsenehv.Model;
 
-public class Persoon extends Klant {
+public class Particulier extends Klant {
     private String email;
 
     // constructor
-    public Persoon(String naam, String kenteken) {
+    public Particulier(String naam, String kenteken) {
         super(naam, kenteken);
         this.email = naam;
     }
