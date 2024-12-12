@@ -13,4 +13,3 @@ public class DatabaseHandler {
         return DriverManager.getConnection(DB_URL, USER, PASS);
     }
 }
-

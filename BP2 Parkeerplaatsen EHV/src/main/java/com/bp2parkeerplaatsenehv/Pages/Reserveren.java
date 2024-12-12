@@ -15,6 +15,7 @@ import java.util.List;
 public class Reserveren {
     private ComboBox<String> naamComboBox;
     private ComboBox<String> kentekenComboBox;
+    private ComboBox<String> objectIDComboBox;
     private ComboBox<String> tijdslotComboBox;
     private DatePicker datumPicker;
     private Button submitButton;
@@ -28,25 +29,25 @@ public class Reserveren {
         grid.setHgap(10);
 
         // Initialize ComboBoxes
-        naamComboBox = new ComboBox<>();
         kentekenComboBox = new ComboBox<>();
+        objectIDComboBox = new ComboBox<>();
         tijdslotComboBox = new ComboBox<>();
         datumPicker = new DatePicker();
 
         // Populate ComboBoxes with data from the database
-        populateComboBox(naamComboBox, "SELECT naam FROM klanten");
         populateComboBox(kentekenComboBox, "SELECT kenteken FROM kentekens");
+        populateComboBox(objectIDComboBox, "SELECT objectID FROM ObjectIDs");
         tijdslotComboBox.getItems().addAll("SELECT tijdslot FROM reserveringen");
 
         // Set prompts
-        naamComboBox.setPromptText("Naam");
         kentekenComboBox.setPromptText("Kenteken");
+        objectIDComboBox.setPromptText("ObjectID(parkeervak)");
         tijdslotComboBox.setPromptText("Tijdslot");
         datumPicker.setPromptText("Datum");
 
         // Set constraints
-        GridPane.setConstraints(naamComboBox, 0, 0);
-        GridPane.setConstraints(kentekenComboBox, 0, 1);
+        GridPane.setConstraints(kentekenComboBox, 0, 0);
+        GridPane.setConstraints(objectIDComboBox, 0, 1);
         GridPane.setConstraints(tijdslotComboBox, 0, 2);
         GridPane.setConstraints(datumPicker, 0, 3);
 
@@ -56,14 +57,14 @@ public class Reserveren {
 
         // Set constraints for buttons
         GridPane.setConstraints(submitButton, 0, 4);
-        GridPane.setConstraints(resetButton, 1, 4);
+        GridPane.setConstraints(resetButton, 0, 5);
 
         // Add event handlers for buttons
         submitButton.setOnAction(e -> handleSubmit());
         resetButton.setOnAction(e -> handleReset());
 
         // Add all elements to the grid
-        grid.getChildren().addAll(naamComboBox, kentekenComboBox, tijdslotComboBox, datumPicker, submitButton, resetButton);
+        grid.getChildren().addAll(kentekenComboBox, objectIDComboBox, tijdslotComboBox, datumPicker, submitButton, resetButton);
 
         // Add the grid to the provided Pane
         p.getChildren().add(grid);
@@ -85,7 +86,7 @@ public class Reserveren {
 
     private void handleSubmit() {
         // Handle submit logic here
-        String naam = naamComboBox.getValue();
+        String objectID = objectIDComboBox.getValue();
         String kenteken = kentekenComboBox.getValue();
         String tijdslot = tijdslotComboBox.getValue();
         String datum = datumPicker.getValue().toString();
@@ -94,7 +95,7 @@ public class Reserveren {
     }
 
     private void handleReset() {
-        naamComboBox.setValue(null);
+        objectIDComboBox.setValue(null);
         kentekenComboBox.setValue(null);
         tijdslotComboBox.setValue(null);
         datumPicker.setValue(null);

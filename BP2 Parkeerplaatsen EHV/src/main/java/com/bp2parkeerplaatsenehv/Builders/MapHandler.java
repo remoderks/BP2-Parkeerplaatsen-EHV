@@ -9,7 +9,7 @@ public class MapHandler {
     public MapHandler() {
         webView = new WebView();
         webEngine = webView.getEngine();
-        webView.setPrefSize(1400, 1000);
+        webView.setPrefSize(800, 600);
         loadMap();
     }
 
