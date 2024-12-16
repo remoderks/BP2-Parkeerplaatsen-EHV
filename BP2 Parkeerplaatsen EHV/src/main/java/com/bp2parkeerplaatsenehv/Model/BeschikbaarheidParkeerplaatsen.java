@@ -1,17 +1,17 @@
 package com.bp2parkeerplaatsenehv.Model;
 
+import java.sql.Date;
 import java.sql.Time;
-import java.util.Date;
 
-public class BeschikbaarheidParkeerplaats {
+public class BeschikbaarheidParkeerplaatsen {
     private Time tijdslot;
     private Date datum;
 
-    public BeschikbaarheidParkeerplaats(Time tijdslot, Date datum) {
+    public BeschikbaarheidParkeerplaatsen(Time tijdslot, Date datum) {
         this.tijdslot = tijdslot;
         this.datum = datum;
     }
-    //Getters
+    // Getters
     public Time getTijdslot() {
         return tijdslot;
     }
