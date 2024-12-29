@@ -8,12 +8,10 @@
     <artifactId>BP2ParkeerplaatsenEHV</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>BP2 Parkeerplaatsen EHV</name>
-
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <junit.version>5.10.2</junit.version>
     </properties>
-
     <dependencies>
         <dependency>
             <groupId>org.openjfx</groupId>

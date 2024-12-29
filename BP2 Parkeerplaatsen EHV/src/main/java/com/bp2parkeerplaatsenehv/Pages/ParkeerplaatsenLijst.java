@@ -116,3 +116,5 @@ public class ParkeerplaatsenLijst {
         }
     }
 }
+
+// zoom functie dmv map.setcenter zoom

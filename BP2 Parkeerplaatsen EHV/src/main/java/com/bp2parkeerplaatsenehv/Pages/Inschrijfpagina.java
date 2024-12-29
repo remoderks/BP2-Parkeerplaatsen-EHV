@@ -19,11 +19,11 @@ public class Inschrijfpagina {
         // Standard text fields
         TextField naamField = new TextField();
         naamField.setPromptText("Naam");
-        GridPane.setConstraints(naamField, 0, 1, 2, 1); // Span across two columns
+        GridPane.setConstraints(naamField, 0, 1, 2, 1);
 
         TextField kentekenField = new TextField();
         kentekenField.setPromptText("Kenteken");
-        GridPane.setConstraints(kentekenField, 0, 2, 2, 1); // Span across two columns
+        GridPane.setConstraints(kentekenField, 0, 2, 2, 1);
 
         // Additional fields for private
         TextField emailField = new TextField();
@@ -33,7 +33,7 @@ public class Inschrijfpagina {
 
         TextField kvkNummerField = new TextField();
         kvkNummerField.setPromptText("KVK Nummer");
-        GridPane.setConstraints(kvkNummerField, 0, 5, 2, 1); // Span across two columns
+        GridPane.setConstraints(kvkNummerField, 0, 5, 2, 1);
         kvkNummerField.setVisible(false);
 
         // Checkboxes for private and company
@@ -45,7 +45,7 @@ public class Inschrijfpagina {
 
         // Submit button
         Button submitButton = new Button("Aanmelden");
-        GridPane.setConstraints(submitButton, 0, 6, 2, 1); // Span across two columns
+        GridPane.setConstraints(submitButton, 0, 6, 2, 1);
 
         // Event handlers for checkboxes
         privateCheckBox.setOnAction(e -> {
