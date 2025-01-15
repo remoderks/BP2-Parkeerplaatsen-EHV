@@ -6,9 +6,9 @@ package com.bp2parkeerplaatsenehv.Model;
  */
 public class Klant {
     // The name of the customer
-    private String naam;
+    protected String naam;
     // The license plate number of the customer's vehicle
-    private String kenteken;
+    protected String kenteken;
     /**
      * Constructor to initialize a Klant object with a name and a license plate number.
      * @param naam The name of the customer
