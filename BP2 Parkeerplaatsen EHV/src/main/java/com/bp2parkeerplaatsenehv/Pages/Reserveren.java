@@ -7,14 +7,12 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
 public class Reserveren {
-    private ComboBox<String> naamComboBox;
     private ComboBox<String> kentekenComboBox;
     private ComboBox<String> objectIDComboBox;
     private ComboBox<String> tijdslotComboBox;
@@ -29,16 +27,16 @@ public class Reserveren {
         grid.setVgap(8);
         grid.setHgap(10);
 
-        // Initialize ComboBoxes
+        // Initialize TextField and ComboBoxes
         kentekenComboBox = new ComboBox<>();
         objectIDComboBox = new ComboBox<>();
         tijdslotComboBox = new ComboBox<>();
         datumPicker = new DatePicker();
 
         // Populate ComboBoxes with data from the database
-        populateComboBox(kentekenComboBox, "SELECT kenteken FROM kentekens");
+        populateComboBox(kentekenComboBox, "SELECT kenteken FROM Kentekens");
         populateComboBox(objectIDComboBox, "SELECT objectID FROM ObjectIDs");
-        tijdslotComboBox.getItems().addAll("SELECT tijdslot FROM reserveringen");
+        populateComboBox(tijdslotComboBox, "SELECT tijdslot FROM BeschikbaarheidParkeerplaatsen");
 
         // Set prompts
         kentekenComboBox.setPromptText("Kenteken");
@@ -53,12 +51,12 @@ public class Reserveren {
         GridPane.setConstraints(datumPicker, 0, 3);
 
         // Initialize buttons
-        submitButton = new Button("Submit");
+        submitButton = new Button("Reserveren");
         resetButton = new Button("Reset");
 
         // Set constraints for buttons
-        GridPane.setConstraints(submitButton, 0, 4);
-        GridPane.setConstraints(resetButton, 0, 5);
+        GridPane.setConstraints(submitButton, 0, 5);
+        GridPane.setConstraints(resetButton, 0, 6);
 
         // Add event handlers for buttons
         submitButton.setOnAction(e -> handleSubmit());
