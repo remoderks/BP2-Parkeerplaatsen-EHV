@@ -84,7 +84,7 @@ public class Inschrijfpagina {
             }
             // Validate license plate
             if (!isLicensePlateValid(licensePlateField.getText())) {
-                showAlert("Fout. Kenteken moet in het formaat X-XXX-X of XX-XX-XX zijn. Mag alleen letters en cijfers bevatten.");
+                showAlert("Fout. Kenteken moet in het formaat X-XXX-X, XX-XX-XX, X-XXX-XX, XXX-XX-X, XX-XXX-X zijn. Mag alleen letters en cijfers bevatten.");
                 return;
             }
             // Validate email (only if the email field is visible and applicable)
