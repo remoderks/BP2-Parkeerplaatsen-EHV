@@ -88,7 +88,7 @@ public class Inschrijfpagina {
                     preparedStatement.close();
                     showAlert("U bent succesvol aangemeld als particuliere klant!");
                 } else if (companyCheckBox.isSelected()) {
-                    String query = "INSERT INTO ZakelijkeKlanten (naam, kenteken, kvkNummer) VALUES (?, ?, ?)";
+                          String query = "INSERT INTO ZakelijkeKlanten (naam, kenteken, kvkNummer) VALUES (?, ?, ?)";
                     PreparedStatement preparedStatement = connection.prepareStatement(query);
                     preparedStatement.setString(1, naamField.getText());
                     preparedStatement.setString(2, kentekenField.getText());
