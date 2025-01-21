@@ -84,6 +84,7 @@ public class ParkeerplaatsenLijst {
         });
     }
 
+    // loads the parkeerplaatsen from the Gemeente API and sets it to string value so it fits in the TableView.
     private void loadParkeerplaatsen() {
         parkeerplaatsen.clear();
         try {

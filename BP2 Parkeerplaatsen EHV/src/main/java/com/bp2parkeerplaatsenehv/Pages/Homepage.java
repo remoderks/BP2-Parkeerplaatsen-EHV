@@ -17,6 +17,5 @@ public class Homepage {
         vbox.setAlignment(Pos.CENTER);
         vbox.getChildren().addAll(label, logo);
         p.getChildren().add(vbox);
-
     }
 }

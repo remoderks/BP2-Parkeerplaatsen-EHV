@@ -5,6 +5,7 @@ module com.bp2parkeerplaatsenehv {
     requires javafx.web;
     requires com.google.gson;
     requires org.apache.commons.dbcp2;
+    requires java.desktop;
 
 
     opens com.bp2parkeerplaatsenehv to javafx.fxml;

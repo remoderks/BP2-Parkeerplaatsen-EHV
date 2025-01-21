@@ -2,6 +2,7 @@ package com.bp2parkeerplaatsenehv.Builders;
 import javafx.scene.web.WebEngine;
 import javafx.scene.web.WebView;
 
+
 public class MapHandler {
     private final WebEngine webEngine;
     private final WebView webView;
