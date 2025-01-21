@@ -75,7 +75,6 @@ public class InzageReserveringen {
                 Reserveringsafspraken reserveringsafspraken = new Reserveringsafspraken(kenteken, objectID, tijdslot, datum);
                 reserveringen.add(reserveringsafspraken);
             }
-
             // Close the connection
             resultSet.close();
             statement.close();

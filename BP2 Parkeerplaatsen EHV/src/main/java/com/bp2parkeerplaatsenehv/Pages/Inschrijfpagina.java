@@ -1,9 +1,13 @@
 package com.bp2parkeerplaatsenehv.Pages;
 
+import com.bp2parkeerplaatsenehv.controllers.Data.DatabaseHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
+
+import java.sql.Connection;
+import java.sql.Statement;
 
 public class Inschrijfpagina {
     public Inschrijfpagina(Pane p) {
@@ -74,6 +78,20 @@ public class Inschrijfpagina {
             emailField.clear();
             kvkNummerField.clear();
             // implement the logic to save the data -> class databasehandler
+            try {
+                Connection connection = DatabaseHandler.getConnection();
+                Statement statement = connection.createStatement();
+                String queryParticulier = "INSERT INTO ParticuliereKlanten (naam, kenteken, email) VALUES ('" + naamField.getText() + "', '" + kentekenField.getText() + "', '" + emailField.getText() + "')";
+                String queryZakelijk = "INSERT INTO ZakelijkeKlanten (naam, kenteken, kvkNummer) VALUES ('" + naamField.getText() + "', '" + kentekenField.getText() + "', '" + kvkNummerField.getText() + "')";
+                if (privateCheckBox.isSelected()) {
+                    statement.executeUpdate(queryParticulier);
+                } else if (companyCheckBox.isSelected()) {
+                    statement.executeUpdate(queryZakelijk);
+                }
+            } catch (Exception ex) {
+                System.out.println("An error occurred while saving the data: " + ex.getMessage());
+                ex.printStackTrace();
+            }
         });
 
         // Add all elements to the grid
@@ -81,5 +99,13 @@ public class Inschrijfpagina {
 
         // Add the grid to the provided Pane
         p.getChildren().add(grid);
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
     }
 }
