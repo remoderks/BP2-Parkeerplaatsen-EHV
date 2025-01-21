@@ -4,6 +4,7 @@ import com.bp2parkeerplaatsenehv.Model.Reserveringsafspraken;
 import com.bp2parkeerplaatsenehv.controllers.Data.DatabaseHandler;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
@@ -13,6 +14,7 @@ import javafx.scene.layout.VBox;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class InzageReserveringen {
@@ -56,6 +58,7 @@ public class InzageReserveringen {
         reserveringenPane.getChildren().add(vbox);
     }
 
+    // Load the reserveringen from the database
     private void loadReserveringen() {
         reserveringen.clear();
         try {
@@ -71,17 +74,28 @@ public class InzageReserveringen {
                 String objectID = resultSet.getString("objectID");
                 String tijdslot = resultSet.getString("tijdslot");
                 String datum = resultSet.getString("datum");
-dduiuillllllljk
                 Reserveringsafspraken reserveringsafspraken = new Reserveringsafspraken(kenteken, objectID, tijdslot, datum);
                 reserveringen.add(reserveringsafspraken);
-      z     }
+            }
             // Close the connection
             resultSet.close();
             statement.close();
             connection.close();
-        } catch (Exception e) {
-            System.out.println("An error occurred while loading reserveringen: " + e.getMessage());
-            e.printStackTrace();
+        } catch (SQLException ex) {
+            if (ex.getMessage().contains("DuplicateKeyException")) {
+                showAlert("Gegevens al bekend in het systeem.");
+            } else {
+                showAlert("Er is een fout opgetreden bij het aanmelden: " + ex.getMessage());
+            }
+            ex.printStackTrace();
         }
     }
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
 }
+

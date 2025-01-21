@@ -7,6 +7,8 @@ import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
 
 import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
 import java.sql.Statement;
 
 public class Inschrijfpagina {
@@ -73,25 +75,40 @@ public class Inschrijfpagina {
         });
 
         submitButton.setOnAction(e -> {
+            // Database logic. If statement used to check whether the user is a private or company customer.
+            // Exception error for duplicate key and general errors.
+            try (Connection connection = DatabaseHandler.getConnection()) {
+                if (privateCheckBox.isSelected()) {
+                    String query = "INSERT INTO ParticuliereKlanten (naam, kenteken, email) VALUES (?, ?, ?)";
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.setString(1, naamField.getText());
+                    preparedStatement.setString(2, kentekenField.getText());
+                    preparedStatement.setString(3, emailField.getText());
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    showAlert("U bent succesvol aangemeld als particuliere klant!");
+                } else if (companyCheckBox.isSelected()) {
+                    String query = "INSERT INTO ZakelijkeKlanten (naam, kenteken, kvkNummer) VALUES (?, ?, ?)";
+                    PreparedStatement preparedStatement = connection.prepareStatement(query);
+                    preparedStatement.setString(1, naamField.getText());
+                    preparedStatement.setString(2, kentekenField.getText());
+                    preparedStatement.setString(3, kvkNummerField.getText());
+                    preparedStatement.executeUpdate();
+                    preparedStatement.close();
+                    showAlert("U bent succesvol als zakelijke klant!");
+                }
+            } catch (SQLException ex) {
+                if (ex.getMessage().contains("DuplicateKeyException")) {
+                    showAlert("Gegevens al bekend in het systeem.");
+                } else {
+                    showAlert("Er is een fout opgetreden bij het aanmelden: " + ex.getMessage());
+                }
+                ex.printStackTrace();
+            }
             naamField.clear();
             kentekenField.clear();
             emailField.clear();
             kvkNummerField.clear();
-            // implement the logic to save the data -> class databasehandler
-            try {
-                Connection connection = DatabaseHandler.getConnection();
-                Statement statement = connection.createStatement();
-                String queryParticulier = "INSERT INTO ParticuliereKlanten (naam, kenteken, email) VALUES ('" + naamField.getText() + "', '" + kentekenField.getText() + "', '" + emailField.getText() + "')";
-                String queryZakelijk = "INSERT INTO ZakelijkeKlanten (naam, kenteken, kvkNummer) VALUES ('" + naamField.getText() + "', '" + kentekenField.getText() + "', '" + kvkNummerField.getText() + "')";
-                if (privateCheckBox.isSelected()) {
-                    statement.executeUpdate(queryParticulier);
-                } else if (companyCheckBox.isSelected()) {
-                    statement.executeUpdate(queryZakelijk);
-                }
-            } catch (Exception ex) {
-                System.out.println("An error occurred while saving the data: " + ex.getMessage());
-                ex.printStackTrace();
-            }
         });
 
         // Add all elements to the grid
