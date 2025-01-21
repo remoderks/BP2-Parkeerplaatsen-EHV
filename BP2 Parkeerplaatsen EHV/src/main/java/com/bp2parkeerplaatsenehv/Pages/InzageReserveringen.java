@@ -71,10 +71,10 @@ public class InzageReserveringen {
                 String objectID = resultSet.getString("objectID");
                 String tijdslot = resultSet.getString("tijdslot");
                 String datum = resultSet.getString("datum");
-
+dduiuillllllljk
                 Reserveringsafspraken reserveringsafspraken = new Reserveringsafspraken(kenteken, objectID, tijdslot, datum);
                 reserveringen.add(reserveringsafspraken);
-            }
+      z     }
             // Close the connection
             resultSet.close();
             statement.close();
