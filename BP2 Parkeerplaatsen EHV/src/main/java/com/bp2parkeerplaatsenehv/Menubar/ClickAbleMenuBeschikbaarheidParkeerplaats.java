@@ -1,8 +1,6 @@
 package com.bp2parkeerplaatsenehv.Menubar;
 
-import com.bp2parkeerplaatsenehv.Model.BeschikbaarheidParkeerplaats;
-import com.bp2parkeerplaatsenehv.Pages.Inschrijfpagina;
-import com.bp2parkeerplaatsenehv.Pages.InvoerenBeschikbaarheidParkeerplaats;
+import com.bp2parkeerplaatsenehv.Pages.InvoerenParkeerplaatsen;
 import javafx.scene.control.Label;
 import javafx.scene.control.Menu;
 import javafx.scene.control.MenuItem;
@@ -19,7 +17,7 @@ public class ClickAbleMenuBeschikbaarheidParkeerplaats extends Menu{
             // clear the screen
             beschikbaarheid.getChildren().clear();
             // opens the beschikbaarheid page.
-            new InvoerenBeschikbaarheidParkeerplaats(beschikbaarheid);
+            new InvoerenParkeerplaatsen(beschikbaarheid);
         });
         setGraphic(label);
     }

@@ -7,7 +7,7 @@ public class MenuBar extends javafx.scene.control.MenuBar {
     ClickAbleMenuReserveren reserveren = new ClickAbleMenuReserveren("Parkeerplaats reserveren");
     ClickAbleMenuInzageReserveringen inzageReserveringen = new ClickAbleMenuInzageReserveringen("Inzage reserveringen");
     ClickAbleMenuParkeerplaatsenLijst parkeerplaatsenLijst = new ClickAbleMenuParkeerplaatsenLijst("Parkeerplaatsenlijst");
-    ClickAbleMenuBeschikbaarheidParkeerplaats beschikbaarheidParkeerplaats = new ClickAbleMenuBeschikbaarheidParkeerplaats("Toevoegen beschikbaarheid parkeerplaats");
+    ClickAbleMenuBeschikbaarheidParkeerplaats beschikbaarheidParkeerplaats = new ClickAbleMenuBeschikbaarheidParkeerplaats("Toevoegen parkeerplaatsen");
 
     public MenuBar(Pane root) {
         inschrijfpagina.setPane(root);

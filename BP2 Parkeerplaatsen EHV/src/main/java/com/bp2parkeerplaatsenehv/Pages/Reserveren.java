@@ -1,5 +1,8 @@
 package com.bp2parkeerplaatsenehv.Pages;
 
+import com.bp2parkeerplaatsenehv.Model.ParkingData;
+import com.bp2parkeerplaatsenehv.Model.ParkingObject;
+import com.bp2parkeerplaatsenehv.controllers.Data.DataReader;
 import com.bp2parkeerplaatsenehv.controllers.Data.DatabaseHandler;
 import javafx.geometry.Insets;
 import javafx.scene.control.*;
@@ -35,7 +38,8 @@ public class Reserveren {
 
         // Populate ComboBoxes with data from the database
         populateComboBox(kentekenComboBox, "SELECT kenteken FROM Kentekens");
-        populateComboBox(objectIDComboBox, "SELECT objectID FROM ObjectIDs");
+        // Different method to populate objectIDComboBox -> populateObjectIDComboBox() (Users can choose from the available parking spots listed in API)
+        populateObjectIDComboBox();
         populateComboBox(tijdslotComboBox, "SELECT tijdslot FROM BeschikbaarheidParkeerplaatsen");
 
         // Set prompts
@@ -81,6 +85,20 @@ public class Reserveren {
             e.printStackTrace();
         }
         comboBox.getItems().addAll(items);
+    }
+    private void populateObjectIDComboBox() {
+        DataReader dataReader = new DataReader();
+        ParkingData parkingData = dataReader.readData();
+
+        if (parkingData != null && !parkingData.getParkingObjects().isEmpty()) {
+            List<String> objectIDs = new ArrayList<>();
+            for (ParkingObject parkingObject : parkingData.getParkingObjects()) {
+                objectIDs.add(parkingObject.getObjectId().toString());
+            }
+            objectIDComboBox.getItems().addAll(objectIDs);
+        } else {
+            System.out.println("No parking data found or records are empty.");
+        }
     }
 
     private void handleSubmit() {

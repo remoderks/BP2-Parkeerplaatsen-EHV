@@ -34,7 +34,7 @@ CREATE TABLE ParticuliereKlanten (
     FOREIGN KEY (kenteken) REFERENCES Kentekens(kenteken) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- Trigger: Voeg automatisch ontbrekende naam toe aan Klantnamen voor ParticuliereKlanten
+-- Trigger: Voeg automatisch ontbrekende naam toe aan hoofdverzamling Klantnamen en kenteken voor hoofdverzameling Kentekens
 DELIMITER //
 CREATE TRIGGER BeforeInsertParticuliereKlanten
 BEFORE INSERT ON ParticuliereKlanten
@@ -54,13 +54,13 @@ DELIMITER ;
 CREATE TABLE ZakelijkeKlanten (
     naam VARCHAR(255),
     kenteken VARCHAR(20),
-    email VARCHAR(255),
+    kvknummer VARCHAR(255),
     PRIMARY KEY (kenteken),
     FOREIGN KEY (naam) REFERENCES Klantnamen(naam) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (kenteken) REFERENCES Kentekens(kenteken) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
--- Trigger: Voeg automatisch ontbrekende naam toe aan Klantnamen voor ZakelijkeKlanten
+-- Trigger: Voeg automatisch ontbrekende naam toe aan Klantnamen en kenteken aan Kentekens.
 DELIMITER //
 CREATE TRIGGER BeforeInsertZakelijkeKlanten
 BEFORE INSERT ON ZakelijkeKlanten
@@ -88,21 +88,3 @@ CREATE TABLE Reserveringsafspraken (
     FOREIGN KEY (objectID) REFERENCES ObjectIDs(objectID) ON UPDATE CASCADE ON DELETE CASCADE,
     FOREIGN KEY (tijdslot, datum) REFERENCES BeschikbaarheidParkeerplaatsen(tijdslot, datum)
 );
-
--- Trigger: Voeg automatisch ontbrekende waarden toe aan referentietabellen voor Reserveringsafspraken
-DELIMITER //
-CREATE TRIGGER BeforeInsertReserveringsafspraken
-BEFORE INSERT ON Reserveringsafspraken
-FOR EACH ROW
-BEGIN
-    IF NOT EXISTS (SELECT 1 FROM Kentekens WHERE kenteken = NEW.kenteken) THEN
-        INSERT INTO Kentekens (kenteken) VALUES (NEW.kenteken);
-    END IF;
-    IF NOT EXISTS (SELECT 1 FROM ObjectIDs WHERE objectID = NEW.objectID) THEN
-        INSERT INTO ObjectIDs (objectID) VALUES (NEW.objectID);
-    END IF;
-    IF NOT EXISTS (SELECT 1 FROM BeschikbaarheidParkeerplaatsen WHERE tijdslot = NEW.tijdslot AND datum = NEW.datum) THEN
-        INSERT INTO BeschikbaarheidParkeerplaatsen (tijdslot, datum) VALUES (NEW.tijdslot, NEW.datum);
-    END IF;
-END;//
-DELIMITER ;
