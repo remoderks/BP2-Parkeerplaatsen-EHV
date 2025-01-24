@@ -24,7 +24,7 @@
         }
 
         function addPin(lon, lat, straat) {
-            console.log("Adding pin: " + straat); // Debug statement
+            console.log("Adding pin: " + straat); // Debug statement, I couldn't find if the function was called.
             var lonlat = new OpenLayers.LonLat(lon, lat)
                 .transform(
                     new OpenLayers.Projection("EPSG:4326"),

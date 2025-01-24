@@ -4,7 +4,7 @@ public class ParticuliereKlant extends Klant {
     private String email;
 
     // constructor
-    public ParticuliereKlant(String naam, String kenteken) {
+    public ParticuliereKlant(String naam, String kenteken, String email) {
         super(naam, kenteken);
         this.email = naam;
     }

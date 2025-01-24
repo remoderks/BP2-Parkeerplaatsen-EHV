@@ -1,0 +1,284 @@
+package com.bp2parkeerplaatsenehv.Pages;
+
+import com.bp2parkeerplaatsenehv.Model.ParticuliereKlant;
+import com.bp2parkeerplaatsenehv.Model.ZakelijkeKlant;
+import com.bp2parkeerplaatsenehv.controllers.Data.DatabaseHandler;
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+
+import java.sql.Connection;
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.sql.Statement;
+
+public class InzageKlanten {
+    private TableView<ParticuliereKlant> particuliereKlant;
+    private ObservableList<ParticuliereKlant> particuliereKlanten = FXCollections.observableArrayList();
+    private TableView<ZakelijkeKlant> zakelijkeKlant;
+    private ObservableList<ZakelijkeKlant> zakelijkeKlanten = FXCollections.observableArrayList();
+    private Button deleteButtonParticulier = new Button("Verwijderen");
+    private Button updateButtonParticulier = new Button("Update");
+    private VBox updateFormParticulier;
+    private TextField naamFieldParticulier;
+    private TextField kentekenFieldParticulier;
+    private TextField emailFieldParticulier;
+    private Button submitButtonUpdateFormParticulier;
+
+    private Button deleteButtonZakelijk = new Button("Verwijderen");
+    private Button updateButtonZakelijk = new Button("Update");
+    private VBox updateFormZakelijk;
+    private TextField naamFieldZakelijk;
+    private TextField kentekenFieldZakelijk;
+    private TextField kvkFieldZakelijk;
+    private Button submitButtonUpdateFormZakelijk;
+
+    public InzageKlanten(Pane klantenPane) {
+        // Initialize ParticuliereKlant TableView
+        particuliereKlant = new TableView<>();
+        loadParticuliereKlanten();
+        particuliereKlant.setItems(particuliereKlanten);
+        TableColumn<ParticuliereKlant, String> naamColumnParticulier = new TableColumn<>("Naam");
+        naamColumnParticulier.setCellValueFactory(new PropertyValueFactory<>("naam"));
+        naamColumnParticulier.setPrefWidth(100);
+        TableColumn<ParticuliereKlant, String> kentekenColumnParticulier = new TableColumn<>("Kenteken");
+        kentekenColumnParticulier.setCellValueFactory(new PropertyValueFactory<>("kenteken"));
+        kentekenColumnParticulier.setPrefWidth(100);
+        TableColumn<ParticuliereKlant, String> emailColumnParticulier = new TableColumn<>("Email");
+        emailColumnParticulier.setCellValueFactory(new PropertyValueFactory<>("email"));
+        emailColumnParticulier.setPrefWidth(100);
+        particuliereKlant.getColumns().addAll(naamColumnParticulier, kentekenColumnParticulier, emailColumnParticulier);
+
+        // Initialize ZakelijkeKlant TableView
+        zakelijkeKlant = new TableView<>();
+        loadZakelijkeKlanten();
+        zakelijkeKlant.setItems(zakelijkeKlanten);
+        TableColumn<ZakelijkeKlant, String> naamColumnZakelijk = new TableColumn<>("Naam");
+        naamColumnZakelijk.setCellValueFactory(new PropertyValueFactory<>("naam"));
+        naamColumnZakelijk.setPrefWidth(100);
+        TableColumn<ZakelijkeKlant, String> kentekenColumnZakelijk = new TableColumn<>("Kenteken");
+        kentekenColumnZakelijk.setCellValueFactory(new PropertyValueFactory<>("kenteken"));
+        kentekenColumnZakelijk.setPrefWidth(100);
+        TableColumn<ZakelijkeKlant, String> kvkColumnZakelijk = new TableColumn<>("KVK");
+        kvkColumnZakelijk.setCellValueFactory(new PropertyValueFactory<>("kvkNumber"));
+        kvkColumnZakelijk.setPrefWidth(100);
+        zakelijkeKlant.getColumns().addAll(naamColumnZakelijk, kentekenColumnZakelijk, kvkColumnZakelijk);
+
+        // Initialize ParticuliereKlant update form
+        updateFormParticulier = new VBox(10);
+        naamFieldParticulier = new TextField();
+        kentekenFieldParticulier = new TextField();
+        emailFieldParticulier = new TextField();
+        submitButtonUpdateFormParticulier = new Button("Update klant");
+
+        updateFormParticulier.getChildren().addAll(new Label("Naam"), naamFieldParticulier, new Label("Kenteken"), kentekenFieldParticulier, new Label("Email"), emailFieldParticulier, submitButtonUpdateFormParticulier);
+        updateFormParticulier.setVisible(false);
+
+        // Initialize ZakelijkeKlant update form
+        updateFormZakelijk = new VBox(10);
+        naamFieldZakelijk = new TextField();
+        kentekenFieldZakelijk = new TextField();
+        kvkFieldZakelijk = new TextField();
+        submitButtonUpdateFormZakelijk = new Button("Update klant");
+
+        updateFormZakelijk.getChildren().addAll(new Label("Naam"), naamFieldZakelijk, new Label("Kenteken"), kentekenFieldZakelijk, new Label("KVK"), kvkFieldZakelijk, submitButtonUpdateFormZakelijk);
+        updateFormZakelijk.setVisible(false);
+
+        // Event handlers for buttons
+        updateButtonParticulier.setOnAction(event -> showUpdateFormParticulier());
+        submitButtonUpdateFormParticulier.setOnAction(event -> updateParticuliereKlant());
+        deleteButtonParticulier.setOnAction(event -> deleteParticuliereKlant());
+
+        updateButtonZakelijk.setOnAction(event -> showUpdateFormZakelijk());
+        submitButtonUpdateFormZakelijk.setOnAction(event -> updateZakelijkeKlant());
+        deleteButtonZakelijk.setOnAction(event -> deleteZakelijkeKlant());
+
+        // Create VBox to hold the TableViews and forms
+        VBox vbox = new VBox(10);
+        vbox.getChildren().addAll(particuliereKlant, updateButtonParticulier, deleteButtonParticulier, updateFormParticulier, zakelijkeKlant, updateButtonZakelijk, deleteButtonZakelijk, updateFormZakelijk);
+
+        // Add the vbox to the Pane
+        klantenPane.getChildren().add(vbox);
+    }
+
+    private void loadParticuliereKlanten() {
+        particuliereKlanten.clear();
+        try {
+            Connection connection = DatabaseHandler.getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT naam, kenteken, email FROM ParticuliereKlanten";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String naam = resultSet.getString("naam");
+                String kenteken = resultSet.getString("kenteken");
+                String email = resultSet.getString("email");
+                ParticuliereKlant klant = new ParticuliereKlant(naam, kenteken, email);
+                particuliereKlanten.add(klant);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            showAlert("Er is een fout opgetreden bij het laden van particuliere klanten: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void loadZakelijkeKlanten() {
+        zakelijkeKlanten.clear();
+        try {
+            Connection connection = DatabaseHandler.getConnection();
+            Statement statement = connection.createStatement();
+            String query = "SELECT naam, kenteken, kvknummer FROM ZakelijkeKlanten";
+            ResultSet resultSet = statement.executeQuery(query);
+
+            while (resultSet.next()) {
+                String naam = resultSet.getString("naam");
+                String kenteken = resultSet.getString("kenteken");
+                int kvkNumber = resultSet.getInt("kvk");
+                ZakelijkeKlant klant = new ZakelijkeKlant(naam, kenteken, kvkNumber);
+                zakelijkeKlanten.add(klant);
+            }
+
+            resultSet.close();
+            statement.close();
+            connection.close();
+        } catch (SQLException ex) {
+            showAlert("Er is een fout opgetreden bij het laden van zakelijke klanten: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void showUpdateFormParticulier() {
+        ParticuliereKlant selectedKlant = particuliereKlant.getSelectionModel().getSelectedItem();
+        if (selectedKlant == null) {
+            showAlert("Selecteer een particuliere klant om te updaten.");
+            return;
+        } else {
+            naamFieldParticulier.setText(selectedKlant.getNaam());
+            kentekenFieldParticulier.setText(selectedKlant.getKenteken());
+            emailFieldParticulier.setText(selectedKlant.getEmail());
+            updateFormParticulier.setVisible(true);
+        }
+    }
+
+    private void updateParticuliereKlant() {
+        ParticuliereKlant selectedKlant = particuliereKlant.getSelectionModel().getSelectedItem();
+        if (selectedKlant == null) {
+            showAlert("Selecteer een particuliere klant om te updaten.");
+            return;
+        }
+        try {
+            Connection connection = DatabaseHandler.getConnection();
+            String query = "UPDATE ParticuliereKlant SET naam = ?, kenteken = ?, email = ? WHERE kenteken = ?";
+            java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, naamFieldParticulier.getText());
+            preparedStatement.setString(2, kentekenFieldParticulier.getText());
+            preparedStatement.setString(3, emailFieldParticulier.getText());
+            preparedStatement.setString(4, selectedKlant.getKenteken());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            showAlert("Particuliere klant succesvol geüpdatet!");
+            loadParticuliereKlanten();
+        } catch (SQLException ex) {
+            showAlert("Er is een fout opgetreden bij het updaten van de particuliere klant: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void deleteParticuliereKlant() {
+        ParticuliereKlant selectedKlant = particuliereKlant.getSelectionModel().getSelectedItem();
+        if (selectedKlant == null) {
+            showAlert("Selecteer een particuliere klant om te verwijderen.");
+            return;
+        }
+        try {
+            Connection connection = DatabaseHandler.getConnection();
+            String query = "DELETE FROM ParticuliereKlant WHERE kenteken = ?";
+            java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, selectedKlant.getKenteken());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            showAlert("Particuliere klant succesvol verwijderd!");
+            loadParticuliereKlanten();
+        } catch (SQLException ex) {
+            showAlert("Er is een fout opgetreden bij het verwijderen van de particuliere klant: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void showUpdateFormZakelijk() {
+        ZakelijkeKlant selectedKlant = zakelijkeKlant.getSelectionModel().getSelectedItem();
+        if (selectedKlant == null) {
+            showAlert("Selecteer een zakelijke klant om te updaten.");
+            return;
+        } else {
+            naamFieldZakelijk.setText(selectedKlant.getNaam());
+            kentekenFieldZakelijk.setText(selectedKlant.getKenteken());
+            kvkFieldZakelijk.setText(String.valueOf(selectedKlant.getKvkNumber()));
+            updateFormZakelijk.setVisible(true);
+        }
+    }
+
+    private void updateZakelijkeKlant() {
+        ZakelijkeKlant selectedKlant = zakelijkeKlant.getSelectionModel().getSelectedItem();
+        if (selectedKlant == null) {
+            showAlert("Selecteer een zakelijke klant om te updaten.");
+            return;
+        }
+        try {
+            Connection connection = DatabaseHandler.getConnection();
+            String query = "UPDATE ZakelijkeKlant SET naam = ?, kenteken = ?, kvk = ? WHERE kenteken = ?";
+            java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, naamFieldZakelijk.getText());
+            preparedStatement.setString(2, kentekenFieldZakelijk.getText());
+            preparedStatement.setString(3, kvkFieldZakelijk.getText());
+            preparedStatement.setString(4, selectedKlant.getKenteken());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            showAlert("Zakelijke klant succesvol geüpdatet!");
+            loadZakelijkeKlanten();
+        } catch (SQLException ex) {
+            showAlert("Er is een fout opgetreden bij het updaten van de zakelijke klant: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void deleteZakelijkeKlant() {
+        ZakelijkeKlant selectedKlant = zakelijkeKlant.getSelectionModel().getSelectedItem();
+        if (selectedKlant == null) {
+            showAlert("Selecteer een zakelijke klant om te verwijderen.");
+            return;
+        }
+        try {
+            Connection connection = DatabaseHandler.getConnection();
+            String query = "DELETE FROM ZakelijkeKlant WHERE kenteken = ?";
+            java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, selectedKlant.getKenteken());
+            preparedStatement.executeUpdate();
+            preparedStatement.close();
+            connection.close();
+            showAlert("Zakelijke klant succesvol verwijderd!");
+            loadZakelijkeKlanten();
+        } catch (SQLException ex) {
+            showAlert("Er is een fout opgetreden bij het verwijderen van de zakelijke klant: " + ex.getMessage());
+            ex.printStackTrace();
+        }
+    }
+
+    private void showAlert(String message) {
+        Alert alert = new Alert(Alert.AlertType.INFORMATION);
+        alert.setTitle("Information Dialog");
+        alert.setHeaderText(null);
+        alert.setContentText(message);
+        alert.showAndWait();
+    }
+}

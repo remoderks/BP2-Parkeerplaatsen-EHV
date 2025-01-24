@@ -12,7 +12,7 @@ public class ZakelijkeKlant extends Klant {
      * @param naam The name of the customer
      * @param kenteken The license plate number of the customer's vehicle
      */
-    public ZakelijkeKlant(Integer kvkNumber, String naam, String kenteken) {
+    public ZakelijkeKlant(String naam, String kenteken, Integer kvkNumber) {
         super(naam, kenteken);
         this.kvkNumber = kvkNumber;
     }

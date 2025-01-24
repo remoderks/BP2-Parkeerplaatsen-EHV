@@ -21,9 +21,16 @@ public class InvoerenParkeerplaatsen {
         tijdslotField.setPromptText("vul tijdslot in. (e.g. 12:00-13:00)");
         datumPicker.setPromptText("Vul datum in: YYYY-MM-DD");
         verstuurBeschikbaarheidButton.setOnAction(event -> addBeschikbaarheid());
-
         objectIDField.setPromptText("Vul objectID in");
         verstuurObjectIDButton.setOnAction(event -> addObjectID());
+
+        // Set preferred width for tijdslotField and objectIDField
+        double prefWidth = 200;
+        tijdslotField.setMaxWidth(prefWidth);
+        datumPicker.setPrefWidth(prefWidth);
+        objectIDField.setMaxWidth(prefWidth);
+        verstuurBeschikbaarheidButton.setPrefWidth(prefWidth);
+        verstuurObjectIDButton.setPrefWidth(prefWidth);
 
         vbox.getChildren().addAll(label ,tijdslotField, datumPicker, verstuurBeschikbaarheidButton, objectIDField, verstuurObjectIDButton);
         pane.getChildren().add(vbox);
