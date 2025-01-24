@@ -162,9 +162,12 @@ public class InzageReserveringen {
         // Delete the reserveringsafspraak from the database
         try {
             Connection connection = DatabaseHandler.getConnection();
-            String query = "DELETE FROM Reserveringsafspraken WHERE kenteken = ?";
+            String query = "DELETE FROM Reserveringsafspraken WHERE kenteken = ? AND objectID = ? AND tijdslot = ? AND datum = ?";
             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, selectedReserveringsafspraak.getKenteken());
+            preparedStatement.setString(2, selectedReserveringsafspraak.getObjectID());
+            preparedStatement.setString(3, selectedReserveringsafspraak.getTijdslot());
+            preparedStatement.setString(4, selectedReserveringsafspraak.getDatum());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();

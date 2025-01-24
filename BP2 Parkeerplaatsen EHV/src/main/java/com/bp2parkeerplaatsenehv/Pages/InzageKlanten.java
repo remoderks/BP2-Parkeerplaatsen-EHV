@@ -9,6 +9,7 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
 
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -62,7 +63,7 @@ public class InzageKlanten {
         TableColumn<ZakelijkeKlant, String> kentekenColumnZakelijk = new TableColumn<>("Kenteken");
         kentekenColumnZakelijk.setCellValueFactory(new PropertyValueFactory<>("kenteken"));
         kentekenColumnZakelijk.setPrefWidth(100);
-        TableColumn<ZakelijkeKlant, String> kvkColumnZakelijk = new TableColumn<>("KVK");
+        TableColumn<ZakelijkeKlant, String> kvkColumnZakelijk = new TableColumn<>("kvknummer");
         kvkColumnZakelijk.setCellValueFactory(new PropertyValueFactory<>("kvkNumber"));
         kvkColumnZakelijk.setPrefWidth(100);
         zakelijkeKlant.getColumns().addAll(naamColumnZakelijk, kentekenColumnZakelijk, kvkColumnZakelijk);
@@ -84,7 +85,7 @@ public class InzageKlanten {
         kvkFieldZakelijk = new TextField();
         submitButtonUpdateFormZakelijk = new Button("Update klant");
 
-        updateFormZakelijk.getChildren().addAll(new Label("Naam"), naamFieldZakelijk, new Label("Kenteken"), kentekenFieldZakelijk, new Label("KVK"), kvkFieldZakelijk, submitButtonUpdateFormZakelijk);
+        updateFormZakelijk.getChildren().addAll(new Label("Naam"), naamFieldZakelijk, new Label("Kenteken"), kentekenFieldZakelijk, new Label("kvknummer"), kvkFieldZakelijk, submitButtonUpdateFormZakelijk);
         updateFormZakelijk.setVisible(false);
 
         // Event handlers for buttons
@@ -96,13 +97,17 @@ public class InzageKlanten {
         submitButtonUpdateFormZakelijk.setOnAction(event -> updateZakelijkeKlant());
         deleteButtonZakelijk.setOnAction(event -> deleteZakelijkeKlant());
 
-        // Create VBox to hold the TableViews and forms
+        // Create a HBox to hold the Vboxes with the tableviews and buttons, forms
         klantenPane.getChildren().clear();
-        VBox vbox = new VBox(10);
-        vbox.getChildren().addAll(particuliereKlant, updateButtonParticulier, deleteButtonParticulier, updateFormParticulier, zakelijkeKlant, updateButtonZakelijk, deleteButtonZakelijk, updateFormZakelijk);
+        HBox hbox = new HBox(10);
+        VBox vboxParticulier = new VBox(10);
+        vboxParticulier.getChildren().addAll(particuliereKlant, updateButtonParticulier, deleteButtonParticulier, updateFormParticulier);
+        VBox vboxZakelijk = new VBox(10);
+        vboxZakelijk.getChildren().addAll(zakelijkeKlant, updateButtonZakelijk, deleteButtonZakelijk, updateFormZakelijk);
+        hbox.getChildren().addAll(vboxParticulier, vboxZakelijk);
 
-        // Add the vbox to the Pane
-        klantenPane.getChildren().add(vbox);
+        // Add the hbox to the Pane
+        klantenPane.getChildren().add(hbox);
     }
 
     private void loadParticuliereKlanten() {
@@ -141,7 +146,7 @@ public class InzageKlanten {
             while (resultSet.next()) {
                 String naam = resultSet.getString("naam");
                 String kenteken = resultSet.getString("kenteken");
-                int kvkNumber = resultSet.getInt("kvk");
+                int kvkNumber = resultSet.getInt("kvknummer");
                 ZakelijkeKlant klant = new ZakelijkeKlant(naam, kenteken, kvkNumber);
                 zakelijkeKlanten.add(klant);
             }
@@ -176,12 +181,29 @@ public class InzageKlanten {
         }
         try {
             Connection connection = DatabaseHandler.getConnection();
-            String query = "UPDATE ParticuliereKlant SET naam = ?, kenteken = ?, email = ? WHERE kenteken = ?";
+            // update klantnamen table
+            String insertKlantnaamQuery = "UPDATE Klantnamen SET naam = ? WHERE naam = ?";
+            java.sql.PreparedStatement updateKlantnaamStmt = connection.prepareStatement(insertKlantnaamQuery);
+            updateKlantnaamStmt.setString(1, naamFieldParticulier.getText());
+            updateKlantnaamStmt.setString(2, selectedKlant.getNaam());
+            updateKlantnaamStmt.executeUpdate();
+            updateKlantnaamStmt.close();
+            //update kentekens table
+            String insertKentekenQuery = "UPDATE Kentekens SET kenteken = ? WHERE kenteken = ?";
+            java.sql.PreparedStatement updateKentekenStmt = connection.prepareStatement(insertKentekenQuery);
+            updateKentekenStmt.setString(1, kentekenFieldParticulier.getText());
+            updateKentekenStmt.setString(2, selectedKlant.getKenteken());
+            updateKentekenStmt.executeUpdate();
+            updateKentekenStmt.close();
+            //update particuliere klanten table
+            String query = "UPDATE ParticuliereKlanten SET naam = ?, kenteken = ?, email = ? WHERE kenteken = ?";
             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, naamFieldParticulier.getText());
             preparedStatement.setString(2, kentekenFieldParticulier.getText());
             preparedStatement.setString(3, emailFieldParticulier.getText());
+            preparedStatement.setString(4, selectedKlant.getNaam());
             preparedStatement.setString(4, selectedKlant.getKenteken());
+            preparedStatement.setString(4, selectedKlant.getEmail());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
@@ -201,9 +223,11 @@ public class InzageKlanten {
         }
         try {
             Connection connection = DatabaseHandler.getConnection();
-            String query = "DELETE FROM ParticuliereKlant WHERE kenteken = ?";
+            String query = "DELETE FROM ParticuliereKlanten WHERE naam =? AND kenteken = ? AND email = ?";
             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
+            preparedStatement.setString(1, selectedKlant.getNaam());
             preparedStatement.setString(1, selectedKlant.getKenteken());
+            preparedStatement.setString(2, selectedKlant.getEmail());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
@@ -236,12 +260,28 @@ public class InzageKlanten {
         }
         try {
             Connection connection = DatabaseHandler.getConnection();
-            String query = "UPDATE ZakelijkeKlant SET naam = ?, kenteken = ?, kvk = ? WHERE kenteken = ?";
+            String insertKlantnaamQuery = "UPDATE Klantnamen SET naam = ? WHERE naam = ?";
+            java.sql.PreparedStatement updateKlantnaamStmt = connection.prepareStatement(insertKlantnaamQuery);
+            updateKlantnaamStmt.setString(1, naamFieldZakelijk.getText());
+            updateKlantnaamStmt.setString(2, selectedKlant.getNaam());
+            updateKlantnaamStmt.executeUpdate();
+            updateKlantnaamStmt.close();
+            //update kentekens table
+            String insertKentekenQuery = "UPDATE Kentekens SET kenteken = ? WHERE kenteken = ?";
+            java.sql.PreparedStatement updateKentekenStmt = connection.prepareStatement(insertKentekenQuery);
+            updateKentekenStmt.setString(1, kentekenFieldZakelijk.getText());
+            updateKentekenStmt.setString(2, selectedKlant.getKenteken());
+            updateKentekenStmt.executeUpdate();
+            updateKentekenStmt.close();
+            String query = "UPDATE ZakelijkeKlanten SET naam = ?, kenteken = ?, kvknummer = ? WHERE naam = ? AND kenteken = ? AND kvknummer = ?";
             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, naamFieldZakelijk.getText());
             preparedStatement.setString(2, kentekenFieldZakelijk.getText());
             preparedStatement.setString(3, kvkFieldZakelijk.getText());
-            preparedStatement.setString(4, selectedKlant.getKenteken());
+            preparedStatement.setString(4, selectedKlant.getNaam());
+            preparedStatement.setString(5, selectedKlant.getKenteken());
+            preparedStatement.setInt(6, selectedKlant.getKvkNumber());
+
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
@@ -261,7 +301,7 @@ public class InzageKlanten {
         }
         try {
             Connection connection = DatabaseHandler.getConnection();
-            String query = "DELETE FROM ZakelijkeKlant WHERE kenteken = ?";
+            String query = "DELETE FROM ZakelijkeKlanten WHERE kenteken = ?";
             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, selectedKlant.getKenteken());
             preparedStatement.executeUpdate();

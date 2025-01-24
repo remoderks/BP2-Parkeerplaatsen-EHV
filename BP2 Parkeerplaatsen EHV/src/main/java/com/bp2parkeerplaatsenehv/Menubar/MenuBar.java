@@ -18,6 +18,6 @@ public class MenuBar extends javafx.scene.control.MenuBar {
         beschikbaarheidParkeerplaats.setPane(p);
         inzageKlanten.setPane(p);
 
-        getMenus().addAll(inschrijfpagina, reserveren, inzageReserveringen, parkeerplaatsenLijst, beschikbaarheidParkeerplaats, inzageKlanten);
+        getMenus().addAll(parkeerplaatsenLijst, inschrijfpagina, reserveren, inzageReserveringen, inzageKlanten, beschikbaarheidParkeerplaats);
     }
 }
