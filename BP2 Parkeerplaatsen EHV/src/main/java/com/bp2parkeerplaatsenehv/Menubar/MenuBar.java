@@ -10,6 +10,7 @@ public class MenuBar extends javafx.scene.control.MenuBar {
     ClickAbleMenuBeschikbaarheidParkeerplaats beschikbaarheidParkeerplaats = new ClickAbleMenuBeschikbaarheidParkeerplaats("Toevoegen parkeerplaats");
     ClickAbleMenuInzageKlanten inzageKlanten = new ClickAbleMenuInzageKlanten("Inzage klanten");
 
+    // Constructor for the MenuBar
     public MenuBar(Pane p) {
         inschrijfpagina.setPane(p);
         reserveren.setPane(p);

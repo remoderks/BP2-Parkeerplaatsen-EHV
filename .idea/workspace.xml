@@ -7,9 +7,6 @@
     <list default="true" id="196db9ee-e8b9-4682-b746-97fd6953585a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Menubar/MenuBar.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Menubar/MenuBar.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Model/ParticuliereKlant.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Model/ParticuliereKlant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageKlanten.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageKlanten.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageReserveringen.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageReserveringen.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -74,7 +71,8 @@
       <workItem from="1737727143426" duration="362000" />
       <workItem from="1737727614288" duration="53000" />
       <workItem from="1737727674741" duration="400000" />
-      <workItem from="1737728082953" duration="2399000" />
+      <workItem from="1737728082953" duration="3194000" />
+      <workItem from="1737759309509" duration="130000" />
     </task>
     <servers />
   </component>
