@@ -97,6 +97,7 @@ public class InzageKlanten {
         deleteButtonZakelijk.setOnAction(event -> deleteZakelijkeKlant());
 
         // Create VBox to hold the TableViews and forms
+        klantenPane.getChildren().clear();
         VBox vbox = new VBox(10);
         vbox.getChildren().addAll(particuliereKlant, updateButtonParticulier, deleteButtonParticulier, updateFormParticulier, zakelijkeKlant, updateButtonZakelijk, deleteButtonZakelijk, updateFormZakelijk);
 
