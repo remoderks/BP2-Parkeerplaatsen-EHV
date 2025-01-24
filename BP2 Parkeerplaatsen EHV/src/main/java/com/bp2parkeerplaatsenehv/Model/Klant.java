@@ -4,7 +4,7 @@ package com.bp2parkeerplaatsenehv.Model;
  * The Klant class represents a customer with a name and a license plate number.
  * It serves as a parent class for other types of customers such as individuals and companies.
  */
-public class Klant {
+public abstract class Klant {
     // The name of the customer
     protected String naam;
     // The license plate number of the customer's vehicle
