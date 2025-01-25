@@ -26,6 +26,7 @@ public class InzageReserveringen {
     private DatePicker datumField;
     private Button submitButtonUpdateForm;
 
+    // --------- Initialize the InzageReserveringen page ----------------
     public InzageReserveringen(Pane reserveringenPane) {
         // Initialize the TableView
         reserveringsAfspraken = new TableView<>();
@@ -77,7 +78,7 @@ public class InzageReserveringen {
         reserveringenPane.getChildren().add(vbox);
     }
 
-    // Load the reserveringen from the database
+    // ---------------   Loads the reserveringen from the database ---------------------------
     private void loadReserveringen() {
         reserveringen.clear();
         try {
@@ -110,6 +111,7 @@ public class InzageReserveringen {
         }
     }
 
+    // ------------------  Shows the updateForm once update button is pressed ---------------------------
     private void showUpdateForm() {
         Reserveringsafspraken selectedReserveringsafspraak = reserveringsAfspraken.getSelectionModel().getSelectedItem();
         if (selectedReserveringsafspraak == null) {
@@ -124,6 +126,7 @@ public class InzageReserveringen {
         }
     }
 
+    // ------------------  Updates the reserveringsafspraak in the database ---------------------------
     private void updateReserveringsafspraak() {
         // Get the selected reserveringsafspraak
         Reserveringsafspraken selectedReserveringsafspraak = reserveringsAfspraken.getSelectionModel().getSelectedItem();
@@ -152,6 +155,7 @@ public class InzageReserveringen {
         }
     }
 
+    // ------------------  Deletes the reserveringsafspraak from the database ---------------------------
     private void deleteReserveringsafspraak() {
         // Get the selected reserveringsafspraak
         Reserveringsafspraken selectedReserveringsafspraak = reserveringsAfspraken.getSelectionModel().getSelectedItem();
@@ -180,6 +184,7 @@ public class InzageReserveringen {
     }
 
 
+    // ------------------  Alert function  ---------------------------
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");

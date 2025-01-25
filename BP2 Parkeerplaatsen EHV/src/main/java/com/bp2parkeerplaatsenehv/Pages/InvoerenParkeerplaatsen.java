@@ -36,6 +36,7 @@ public class InvoerenParkeerplaatsen {
         pane.getChildren().add(vbox);
     }
 
+    // ---------------   Adds beschikbaarheid to the database ---------------------------
     private void addBeschikbaarheid() {
         String tijdslot = tijdslotField.getText();
         String datum = datumPicker.getValue().toString();
@@ -62,6 +63,7 @@ public class InvoerenParkeerplaatsen {
         }
     }
 
+    // ---------------   Adds objectID to the database ---------------------------
     private void addObjectID() {
         String objectID = objectIDField.getText();
         try {

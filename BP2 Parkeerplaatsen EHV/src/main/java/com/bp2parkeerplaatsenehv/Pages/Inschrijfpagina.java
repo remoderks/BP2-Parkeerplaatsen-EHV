@@ -19,7 +19,6 @@ public class Inschrijfpagina {
         grid.setHgap(10);
         Label infoLabel = new Label("Vul hieronder uw gegevens in om zich aan te melden in het systeem!");
         GridPane.setConstraints(infoLabel, 0, 0, 2, 1); // Span across two columns
-
         // Standard text fields
         TextField nameField = new TextField();
         nameField.setPromptText("Naam");
@@ -27,7 +26,6 @@ public class Inschrijfpagina {
         TextField licensePlateField = new TextField();
         licensePlateField.setPromptText("Kenteken");
         GridPane.setConstraints(licensePlateField, 0, 2, 2, 1);
-
         // Additional fields for private
         TextField emailField = new TextField();
         emailField.setPromptText("Email");
@@ -37,13 +35,11 @@ public class Inschrijfpagina {
         kvkField.setPromptText("KVK Nummer");
         GridPane.setConstraints(kvkField, 0, 5, 2, 1);
         kvkField.setVisible(false);
-
         // Checkboxes for private and company
         CheckBox privateCheckBox = new CheckBox("Particulier");
         GridPane.setConstraints(privateCheckBox, 0, 3);
         CheckBox companyCheckBox = new CheckBox("Zakelijk");
         GridPane.setConstraints(companyCheckBox, 1, 3);
-
         // Submit button
         Button submitButton = new Button("Aanmelden");
         GridPane.setConstraints(submitButton, 0, 6, 2, 1);
@@ -57,7 +53,6 @@ public class Inschrijfpagina {
                 emailField.setVisible(false);
             }
         });
-
 
         companyCheckBox.setOnAction(e -> {
             if (companyCheckBox.isSelected()) {
@@ -152,15 +147,16 @@ public class Inschrijfpagina {
     }
 
     /* Checks whether the email is in the correct format. X@X.X
-       [a-zA-Z0-9]+: One or more alphanumeric characters before the @ symbol.
+       [a-zA-Z0-9]+: One or more alphanumeric characters before the @ symbol. Also allows for underscores, periods, and dashes.
        @: The @ symbol.
-       [a-zA-Z0-9]+: One or more alphanumeric characters after the @ symbol and before the . symbol.
+       [a-zA-Z0-9]+: One or more letters after the @ symbol and before the . symbol.
        .: The . symbol.
-       [a-zA-Z0-9]: One alphanumeric character after the . symbol.
+       [a-zA-Z0-9]: Two to three letters after the . symbol.
     */
     public boolean isEmailValid(String email) {
         return email.matches("[a-zA-Z0-9_.-]+@[a-zA-Z]+\\.[a-zA-Z]{2,3}");
     }
+
 
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);

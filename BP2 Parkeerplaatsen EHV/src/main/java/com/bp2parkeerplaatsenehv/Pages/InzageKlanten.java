@@ -135,6 +135,7 @@ public class InzageKlanten {
         }
     }
 
+    // ---------------   Load zakelijke klanten from the database ---------------------------
     private void loadZakelijkeKlanten() {
         zakelijkeKlanten.clear();
         try {
@@ -160,6 +161,7 @@ public class InzageKlanten {
         }
     }
 
+    // ---------------   Show the update form for particuliere klanten ---------------------------
     private void showUpdateFormParticulier() {
         ParticuliereKlant selectedKlant = particuliereKlant.getSelectionModel().getSelectedItem();
         if (selectedKlant == null) {
@@ -173,6 +175,7 @@ public class InzageKlanten {
         }
     }
 
+    // ---------------   Update the particuliere klant in the database ---------------------------
     private void updateParticuliereKlant() {
         ParticuliereKlant selectedKlant = particuliereKlant.getSelectionModel().getSelectedItem();
         if (selectedKlant == null) {
@@ -215,6 +218,8 @@ public class InzageKlanten {
         }
     }
 
+
+    // ---------------   Delete particuliere klant from the database ---------------------------
     private void deleteParticuliereKlant() {
         ParticuliereKlant selectedKlant = particuliereKlant.getSelectionModel().getSelectedItem();
         if (selectedKlant == null) {
@@ -239,6 +244,7 @@ public class InzageKlanten {
         }
     }
 
+    // ---------------   Show the update form for zakelijke klanten ---------------------------
     private void showUpdateFormZakelijk() {
         ZakelijkeKlant selectedKlant = zakelijkeKlant.getSelectionModel().getSelectedItem();
         if (selectedKlant == null) {
@@ -252,6 +258,8 @@ public class InzageKlanten {
         }
     }
 
+
+    // ---------------   Update zakelijke klant in the database ---------------------------
     private void updateZakelijkeKlant() {
         ZakelijkeKlant selectedKlant = zakelijkeKlant.getSelectionModel().getSelectedItem();
         if (selectedKlant == null) {
@@ -293,6 +301,8 @@ public class InzageKlanten {
         }
     }
 
+
+    // ---------------   Delete zakelijke klant from the database ---------------------------
     private void deleteZakelijkeKlant() {
         ZakelijkeKlant selectedKlant = zakelijkeKlant.getSelectionModel().getSelectedItem();
         if (selectedKlant == null) {
@@ -315,6 +325,8 @@ public class InzageKlanten {
         }
     }
 
+
+    // ---------------   Show an alert dialog with the provided (error)message ---------------------------
     private void showAlert(String message) {
         Alert alert = new Alert(Alert.AlertType.INFORMATION);
         alert.setTitle("Information Dialog");

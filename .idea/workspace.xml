@@ -5,9 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="196db9ee-e8b9-4682-b746-97fd6953585a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Model/Klant.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Model/Klant.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Menubar/MenuBar.class" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Menubar/MenuBar.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Builders/ParkingObjectFilter.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Builders/ParkingObjectFilter.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Builders/UIFormBuilder.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/Inschrijfpagina.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/Inschrijfpagina.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InvoerenParkeerplaatsen.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InvoerenParkeerplaatsen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageKlanten.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageKlanten.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageReserveringen.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageReserveringen.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Builders/JsonBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Builders/MapHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Builders/ParkingObjectFilter.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Builders/UIFormBuilder.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/MainApp.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Menubar/ClickAbleMenuInzageReserveringen.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Menubar/ClickAbleMenuReserveren.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Menubar/MenuBar.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Model/GeoPoint2d.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Model/ParkingData.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Model/ParkingObject.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Pages/Homepage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Pages/Reserveren.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/controllers/Data/DataReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/controllers/Data/DatabaseHandler.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/module-info.class" beforeDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -26,25 +48,30 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.ReserveringsappEHV.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;RunOnceActivity.git.unshallow&quot;: &quot;true&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;ignore.virus.scanning.warn.message&quot;: &quot;true&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
-    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
-    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
-    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
-    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;preferences.general&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ReserveringsappEHV.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.preview.features.used": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
   }
-}</component>
+}]]></component>
   <component name="RunManager">
     <configuration name="ReserveringsappEHV" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-23" />
       <option name="MAIN_CLASS_NAME" value="com.bp2parkeerplaatsenehv.MainApp" />
       <module name="BP2ParkeerplaatsenEHV" />
       <method v="2">
@@ -74,7 +101,10 @@
       <workItem from="1737727674741" duration="400000" />
       <workItem from="1737728082953" duration="3194000" />
       <workItem from="1737759309509" duration="130000" />
-      <workItem from="1737760114459" duration="873000" />
+      <workItem from="1737760114459" duration="2283000" />
+      <workItem from="1737762595438" duration="799000" />
+      <workItem from="1737763417853" duration="12000" />
+      <workItem from="1737763436962" duration="128000" />
     </task>
     <servers />
   </component>

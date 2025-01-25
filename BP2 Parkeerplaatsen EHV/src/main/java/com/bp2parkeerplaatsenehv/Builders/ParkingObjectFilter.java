@@ -18,3 +18,4 @@ public class ParkingObjectFilter {
                 .collect(Collectors.toList());
     }
 }
+
