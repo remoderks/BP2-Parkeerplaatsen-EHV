@@ -130,7 +130,7 @@ public class InzageKlanten {
             statement.close();
             connection.close();
         } catch (SQLException ex) {
-            showAlert("Er is een fout opgetreden bij het laden van particuliere klanten: " + ex.getMessage());
+            System.out.println("Er is een fout opgetreden bij het laden van particuliere klanten: " + ex.getMessage());
             ex.printStackTrace();
         }
     }

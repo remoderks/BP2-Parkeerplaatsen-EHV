@@ -103,9 +103,9 @@ public class InzageReserveringen {
             connection.close();
         } catch (SQLException ex) {
             if (ex.getMessage().contains("DuplicateKeyException")) {
-                showAlert("Gegevens al bekend in het systeem.");
+                System.out.println("Gegevens al bekend in het systeem.");
             } else {
-                showAlert("Er is een fout opgetreden bij het aanmelden: " + ex.getMessage());
+                System.out.println("Er is iets fout gegaan bij het laden: " + ex.getMessage());
             }
             ex.printStackTrace();
         }

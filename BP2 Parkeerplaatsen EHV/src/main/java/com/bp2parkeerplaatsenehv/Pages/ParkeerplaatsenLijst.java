@@ -110,12 +110,9 @@ public class ParkeerplaatsenLijst {
                 // Add the filtered list to ObservableList
                 parkeerplaatsen.addAll(filteredParkingObjects);
             }
-
         } catch (Exception e) {
             System.out.println("An error occurred while loading parking objects: " + e.getMessage());
             e.printStackTrace();
         }
     }
 }
-
-// zoom functie dmv map.setcenter zoom
