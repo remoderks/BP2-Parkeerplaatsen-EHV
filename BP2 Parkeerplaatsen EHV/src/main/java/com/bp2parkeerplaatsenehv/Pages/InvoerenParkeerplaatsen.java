@@ -13,7 +13,7 @@ public class InvoerenParkeerplaatsen {
     private DatePicker datumPicker = new DatePicker();
     private Button verstuurBeschikbaarheidButton = new Button("Verstuur beschikbaarheid");
     private TextField objectIDField = new TextField();
-    private Button verstuurObjectIDButton = new Button("Verstuurd ObjectID");
+    private Button verstuurObjectIDButton = new Button("Verstuur ObjectID");
 
     public InvoerenParkeerplaatsen(Pane pane) {
         VBox vbox = new VBox(10);

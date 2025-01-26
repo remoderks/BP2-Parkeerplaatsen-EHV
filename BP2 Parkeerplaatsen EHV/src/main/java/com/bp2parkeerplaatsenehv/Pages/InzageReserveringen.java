@@ -137,13 +137,16 @@ public class InzageReserveringen {
         // Update the reserveringsafspraak in the database
         try {
             Connection connection = DatabaseHandler.getConnection();
-            String query = "UPDATE Reserveringsafspraken SET kenteken = ?, objectID = ?, tijdslot = ?, datum = ? WHERE kenteken = ?";
+            String query = "UPDATE Reserveringsafspraken SET kenteken = ?, objectID = ?, tijdslot = ?, datum = ? WHERE kenteken = ? AND objectID = ? AND tijdslot = ? AND datum = ?";
             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, kentekenField.getText());
             preparedStatement.setString(2, objectIDField.getText());
             preparedStatement.setString(3, tijdslotField.getText());
             preparedStatement.setString(4, datumField.getValue().toString());
             preparedStatement.setString(5, selectedReserveringsafspraak.getKenteken());
+            preparedStatement.setString(6, selectedReserveringsafspraak.getObjectID());
+            preparedStatement.setString(7, selectedReserveringsafspraak.getTijdslot());
+            preparedStatement.setString(8, selectedReserveringsafspraak.getDatum());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();

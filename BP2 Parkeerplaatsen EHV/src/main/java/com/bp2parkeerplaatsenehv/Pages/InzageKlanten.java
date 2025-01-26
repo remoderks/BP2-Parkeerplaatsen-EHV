@@ -231,8 +231,8 @@ public class InzageKlanten {
             String query = "DELETE FROM ParticuliereKlanten WHERE naam =? AND kenteken = ? AND email = ?";
             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
             preparedStatement.setString(1, selectedKlant.getNaam());
-            preparedStatement.setString(1, selectedKlant.getKenteken());
-            preparedStatement.setString(2, selectedKlant.getEmail());
+            preparedStatement.setString(2, selectedKlant.getKenteken());
+            preparedStatement.setString(3, selectedKlant.getEmail());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
@@ -311,9 +311,11 @@ public class InzageKlanten {
         }
         try {
             Connection connection = DatabaseHandler.getConnection();
-            String query = "DELETE FROM ZakelijkeKlanten WHERE kenteken = ?";
+            String query = "DELETE FROM ZakelijkeKlanten WHERE naam = ? AND kenteken = ? AND kvknummer = ?";
             java.sql.PreparedStatement preparedStatement = connection.prepareStatement(query);
-            preparedStatement.setString(1, selectedKlant.getKenteken());
+            preparedStatement.setString(1, selectedKlant.getNaam());
+            preparedStatement.setString(2, selectedKlant.getKenteken());
+            preparedStatement.setInt(3, selectedKlant.getKvkNumber());
             preparedStatement.executeUpdate();
             preparedStatement.close();
             connection.close();
