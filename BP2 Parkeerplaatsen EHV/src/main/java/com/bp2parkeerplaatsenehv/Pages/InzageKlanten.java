@@ -268,15 +268,15 @@ public class InzageKlanten {
         }
         try {
             Connection connection = DatabaseHandler.getConnection();
-            String insertKlantnaamQuery = "UPDATE Klantnamen SET naam = ? WHERE naam = ?";
-            java.sql.PreparedStatement updateKlantnaamStmt = connection.prepareStatement(insertKlantnaamQuery);
+            String updateKlantnaamQuery = "UPDATE Klantnamen SET naam = ? WHERE naam = ?";
+            java.sql.PreparedStatement updateKlantnaamStmt = connection.prepareStatement(updateKlantnaamQuery);
             updateKlantnaamStmt.setString(1, naamFieldZakelijk.getText());
             updateKlantnaamStmt.setString(2, selectedKlant.getNaam());
             updateKlantnaamStmt.executeUpdate();
             updateKlantnaamStmt.close();
             //update kentekens table
-            String insertKentekenQuery = "UPDATE Kentekens SET kenteken = ? WHERE kenteken = ?";
-            java.sql.PreparedStatement updateKentekenStmt = connection.prepareStatement(insertKentekenQuery);
+            String updateKentekenQuery = "UPDATE Kentekens SET kenteken = ? WHERE kenteken = ?";
+            java.sql.PreparedStatement updateKentekenStmt = connection.prepareStatement(updateKentekenQuery);
             updateKentekenStmt.setString(1, kentekenFieldZakelijk.getText());
             updateKentekenStmt.setString(2, selectedKlant.getKenteken());
             updateKentekenStmt.executeUpdate();
