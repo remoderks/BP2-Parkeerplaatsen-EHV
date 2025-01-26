@@ -6,9 +6,8 @@
   <component name="ChangeListManager">
     <list default="true" id="196db9ee-e8b9-4682-b746-97fd6953585a" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageKlanten.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageKlanten.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageReserveringen.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageReserveringen.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/ParkeerplaatsenLijst.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/ParkeerplaatsenLijst.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/Reserveren.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/Reserveren.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Pages/Reserveren.class" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/target/classes/com/bp2parkeerplaatsenehv/Pages/Reserveren.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -89,6 +88,8 @@
       <workItem from="1737846072542" duration="207000" />
       <workItem from="1737887668191" duration="1649000" />
       <workItem from="1737889336400" duration="156000" />
+      <workItem from="1737889983889" duration="858000" />
+      <workItem from="1737890992564" duration="548000" />
     </task>
     <servers />
   </component>

@@ -11,7 +11,9 @@ import javafx.scene.layout.Pane;
 
 import java.sql.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 public class Reserveren {
     private ComboBox<String> kentekenComboBox;
@@ -75,18 +77,19 @@ public class Reserveren {
         p.getChildren().add(grid);
     }
 
+    // Hash set was used to store unique items in the ComboBox (i.e. no duplicate times. for example multiple 6:00-7:00 in the list)
     private void populateComboBox(ComboBox<String> comboBox, String query) {
-        List<String> items = new ArrayList<>();
+        Set<String> uniqueItems = new HashSet<>();
         try (Connection conn = DatabaseHandler.getConnection();
              Statement stmt = conn.createStatement();
              ResultSet rs = stmt.executeQuery(query)) {
             while (rs.next()) {
-                items.add(rs.getString(1));
+                uniqueItems.add(rs.getString(1));
             }
         } catch (Exception e) {
             e.printStackTrace();
         }
-        comboBox.getItems().addAll(items);
+        comboBox.getItems().addAll(uniqueItems);
     }
     private void populateObjectIDComboBox() {
         DataReader dataReader = new DataReader();
