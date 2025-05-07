@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="196db9ee-e8b9-4682-b746-97fd6953585a" name="Changes" comment="">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageKlanten.java" beforeDir="false" afterPath="$PROJECT_DIR$/BP2 Parkeerplaatsen EHV/src/main/java/com/bp2parkeerplaatsenehv/Pages/InzageKlanten.java" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;remoderks&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://remoderks@github.com/remoderks/BP2-Parkeerplaatsen-EHV.git&quot;,
+    &quot;accountId&quot;: &quot;ac182c69-157c-4399-b6f8-3d42f98edbe9&quot;
+  }
+}</component>
+  <component name="ProjectColorInfo">{
+  &quot;customColor&quot;: &quot;&quot;,
+  &quot;associatedIndex&quot;: 8
+}</component>
+  <component name="ProjectId" id="2s4u9kjgjFtlxeB9x7cJ2wmyQtA" />
+  <component name="ProjectViewState">
+    <option name="hideEmptyMiddlePackages" value="true" />
+    <option name="showLibraryContents" value="true" />
+  </component>
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.ReserveringsappEHV.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "RunOnceActivity.git.unshallow": "true",
+    "git-widget-placeholder": "main",
+    "ignore.preview.features.used": "true",
+    "ignore.virus.scanning.warn.message": "true",
+    "kotlin-language-version-configured": "true",
+    "last_opened_file_path": "/Users/remoderks/Desktop/Projecten/Beroepsproduct 2",
+    "node.js.detected.package.eslint": "true",
+    "node.js.detected.package.tslint": "true",
+    "node.js.selected.package.eslint": "(autodetect)",
+    "node.js.selected.package.tslint": "(autodetect)",
+    "nodejs_package_manager_path": "npm",
+    "project.structure.last.edited": "Project",
+    "project.structure.proportion": "0.0",
+    "project.structure.side.proportion": "0.0",
+    "settings.editor.selected.configurable": "preferences.general",
+    "vue.rearranger.settings.migration": "true"
+  }
+}]]></component>
+  <component name="RunManager">
+    <configuration name="ReserveringsappEHV" type="Application" factoryName="Application">
+      <option name="ALTERNATIVE_JRE_PATH" value="openjdk-23" />
+      <option name="MAIN_CLASS_NAME" value="com.bp2parkeerplaatsenehv.MainApp" />
+      <module name="BP2ParkeerplaatsenEHV" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-125ca727e0f0-intellij.indexing.shared.core-IU-243.23654.153" />
+        <option value="bundled-js-predefined-d6986cc7102b-822845ee3bb5-JavaScript-IU-243.23654.153" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="196db9ee-e8b9-4682-b746-97fd6953585a" name="Changes" comment="" />
+      <created>1737727019797</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1737727019797</updated>
+      <workItem from="1737727021116" duration="114000" />
+      <workItem from="1737727143426" duration="362000" />
+      <workItem from="1737727614288" duration="53000" />
+      <workItem from="1737727674741" duration="400000" />
+      <workItem from="1737728082953" duration="3194000" />
+      <workItem from="1737759309509" duration="130000" />
+      <workItem from="1737760114459" duration="2283000" />
+      <workItem from="1737762595438" duration="799000" />
+      <workItem from="1737763417853" duration="12000" />
+      <workItem from="1737763436962" duration="128000" />
+      <workItem from="1737763573347" duration="305000" />
+      <workItem from="1737809147324" duration="787000" />
+      <workItem from="1737846072542" duration="207000" />
+      <workItem from="1737887668191" duration="1649000" />
+      <workItem from="1737889336400" duration="156000" />
+      <workItem from="1737889983889" duration="858000" />
+      <workItem from="1737890992564" duration="548000" />
+      <workItem from="1737915534785" duration="2000" />
+      <workItem from="1737915550558" duration="406000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+</project>
